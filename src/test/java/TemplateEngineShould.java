@@ -27,4 +27,13 @@ public class TemplateEngineShould {
         assertThat(TemplateEngine.parse("Hola `$user`", variables)).isEqualTo("Hola Carlos");
     }
 
+    @Test
+    void parse_template_and_substitute_all_variables() {
+        HashMap<String, String> variables = new HashMap<>();
+        variables.put("user", "Carlos");
+        variables.put("day", "jueves");
+        assertThat(TemplateEngine.parse("Hola `$user`, hoy es `$day`", variables))
+                .isEqualTo("Hola Carlos, hoy es jueves");
+    }
+
 }
